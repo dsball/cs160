@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class P6 
-{
+{	
+	//Variables
 	static String pieTitle = "Pie Chart";
 	static int pieElements;
 	static String[] pieLabels;
@@ -26,9 +27,11 @@ public class P6
 	static double[] lineData2;
 	static double[] lineData3;
 	
+	//Methods
 	public static void main(String[] args) 
 	{
 		readFile(args[0]);
+		displayCharts();
 	}
 	
 	private static void readFile(String inputFile) 
@@ -176,6 +179,23 @@ public class P6
 	
 	private static void displayCharts() 
 	{
+		Plotter piePlotter = new Plotter(pieTitle);
+		Plotter barPlotter = new Plotter(barTitle);
+		Plotter linePlotter = new Plotter(lineTitle);
+		
+		piePlotter.pieChartData(pieElements, pieData);
+		piePlotter.pieChartLabels(pieElements, pieLabels);
+		piePlotter.drawGraph(Plotter.eType.PIECHART);
+
+		barPlotter.barChartData(0, barElements, barData1);
+		barPlotter.barChartData(1, barElements, barData2);
+		barPlotter.drawGraph(Plotter.eType.BARCHART);
+		
+		linePlotter.lineGraphData(0, lineElements, lineData1);
+		linePlotter.lineGraphData(1, lineElements, lineData2);
+		linePlotter.lineGraphData(2, lineElements, lineData3);
+		linePlotter.drawGraph(Plotter.eType.LINEGRAPH);
+
 		
 	} 
 }
