@@ -54,32 +54,31 @@ public class P5 {
 		
 		for(int j=0 ; j < numberLines ; j++)
 		{
-			StringTokenizer st = new StringTokenizer(lineArray[j], " ", true);
+			StringTokenizer st = new StringTokenizer(lineArray[j], " \t", true);
 			
 			while(st.hasMoreTokens())
 			{
 				token = st.nextToken();
 				boolean isWord = true;
 				for(int i = 0; i<token.length(); i++)
-				{					
-					if(Character.isLetter(token.charAt(i)))
+				{	
+					numberChars++;
+					if(Character.isUpperCase(token.charAt(i)))
+					{ 
+						numberUpper++;
+					}
+					else if(Character.isLowerCase(token.charAt(i)))
 					{
-						numberChars++;
-						if(Character.isUpperCase(token.charAt(i)))
-						{ 
-							numberUpper++;
-						}
-						else
-						{
-							numberLower++;
-						}
+						numberLower++;
 					}
 					else if( Character.isDigit(token.charAt(i)))
 					{
+						
 						numberDigits++; isWord = false;
 					}
 					else if(token.equals(" "))
 					{
+						
 						numberSpaces++; isWord = false;
 					}
 					else if(token.equals("\t"))
@@ -88,7 +87,7 @@ public class P5 {
 					}
 					else
 					{
-						numberSpecial++; isWord = false;
+						numberSpecial++;
 					}
 				}
 				if(isWord){numberWords++;}
